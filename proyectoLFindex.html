@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LibraryFlyx</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
+body{background:#0f172a;color:#fff}
+header{height:100vh;background:linear-gradient(rgba(15,23,42,.75),rgba(15,23,42,.85)),url("imgp..jpg") center/cover}
+nav{display:flex;justify-content:space-between;align-items:center;padding:25px 70px}
+.logo{display:flex;align-items:center;gap:15px}.logo img{width:55px}
+h1{color:#ff4d5a}h1 span{color:#38bdf8}
+.hero{height:85vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px}
+.hero h2{font-size:4rem}.hero p{max-width:700px;margin:25px 0;color:#d1d5db}
+button,.btn{padding:15px 35px;border:none;border-radius:12px;background:linear-gradient(135deg,#ff4d5a,#38bdf8);color:#fff;font-weight:bold;cursor:pointer}
+main{max-width:1200px;margin:auto;padding:60px 20px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.card{background:#111827;border-radius:16px;overflow:hidden}
+.card img{width:100%;height:200px;object-fit:cover}.card div{padding:20px}
+footer{text-align:center;padding:25px;background:#020617}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);justify-content:center;align-items:center}
+.box{background:#1e293b;padding:30px;border-radius:16px;width:350px;position:relative}
+.box h2{text-align:center;margin-bottom:20px}
+.box input{width:100%;padding:12px;margin:10px 0;border:none;border-radius:8px}
+.close{position:absolute;right:15px;top:10px;font-size:24px;cursor:pointer}
+#panel{display:none;padding:60px;text-align:center}
+.cards{
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+}
+
+.card{
+    background:#111827;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:25px;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#cbd5e1;
+    line-height:1.6;
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<header id="inicio" >
+<nav>
+<div class="logo">
+<img src="img.png" alt="Logo">
+<h1>Library<span>Flyx</span></h1>
+</div>
+</nav>
+<section class="hero">
+<h2>
+Tu biblioteca virtual
+sin límites
+</h2>
+<p>
+Explora, lee y descubre miles de libros,
+mangas, novelas y documentos académicos
+desde cualquier lugar.
+</p>
+
+<button onclick="abrir()" >Iniciar sesión</button>
+
+
+</section>
+
+</header>
+
+<div class="modal" id="modal">
+<div class="box">
+<span class="close" onclick="cerrar()">&times;</span>
+<h2>Iniciar sesión</h2>
+<input id="user" placeholder="Usuario">
+<input id="pass" type="password" placeholder="Contraseña">
+<button style="width:100%" onclick="login()">Ingresar</button>
+<p id="msg" style="margin-top:15px;color:#fca5a5"></p>
+</div></div>
+
+<div id="panel">
+
+    <!-- Barra superior -->
+    <header class="panel-header">
+
+        <div class="logo-panel">
+            <img src="img.png" alt="Logo">
+            <h1>Library<span>Flyx</span></h1>
+        </div>
+
+        <div class="buscador">
+            <input type="text" placeholder="🔍 Buscar libros, mangas o novelas...">
+        </div>
+
+        <div class="usuario">
+            <span>👤</span>
+            <button onclick="volver()">Cerrar sesión</button>
+        </div>
+
+    </header>
+
+    <!-- Banner -->
+    <section class="banner">
+        <h1>Bienvenido a LibraryFlyx</h1>
+       
+
+    </section>
+
+    <!-- Categorías -->
+    <section class="categorias">
+
+        <h2>Categorías</h2>
+
+        <div class="grid-libros">
+
+            <div class="libro">
+                <img src="imgliteratura.jpg" alt="Libros">
+             <p> <b>LITERATURA </b> </p>
+            </div>
+
+            <div class="libro">
+               <img src="imgnovela.jpg">
+                <p> <b>NOVELAS</b> </p>
+            </div>
+
+            <div class="libro">
+                <img src="imgmanga.jpg">
+                <p> <b>MANGAS</b></p>
+            </div>
+
+            <div class="libro">
+                <img src="imgacademico.jpg">
+                <p> <b>ACADÉMICOS</b> </p>
+            </div>
+
+            <div class="libro">
+                <img src="imgcienciaficcion.jpg">
+                <p> <b>CIENCIA FICCIÓN</b></p>
+            </div>
+
+            <div class="libro">
+                <img src="imgcomedia.jpg">
+                <p> <b>COMEDIA</b></p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Recomendados -->
+    <section class="recomendados">
+
+        <h2>Libros recomendados</h2>
+
+        <div class="grid-libros">
+
+            <div class="libro">
+                <img src="imglibro1.jpg">
+                <p> <b>LIBRO 1</b> </p>
+            </div>
+
+            <div class="libro">
+                <img src="imglibro2.jpg">
+                <p> <b>LIBRO 2</b> </p>
+            </div>
+
+            <div class="libro">
+                <img src="imglibro3.jpg">
+                <p> <b>LIBRO 3</b></p>
+            </div>
+
+            <div class="libro">
+                <img src="imglibro4.jpg">
+                <p> <b>LIBRO 4</b> </p>
+            </div>
+
+<div class="libro">
+    <h3>La Ilíada</h3>
+    <p>Homero</p>
+    <div class="libro" >
+        <img src="imgiliada.jpg">
+    </div>
+
+    <a href="#" onclick="abrirLibro('Homero - Iliada.pdf')">
+    📖 Leer libro
+</a>
+
+    <a href="Homero - Iliada.pdf" download>
+        ⬇ Descargar
+    </a>
+</div>
+
+
+<div class="libro">
+    <h3>La Odisea</h3>
+    <p>Homero</p>
+    <div class="libro" >
+        <img src="imgodisea.png" >
+    </div>
+
+    <a href="#" onclick="abrirLibro('La Odisea - Homero - PDF.pdf')">
+    📖 Leer libro
+</a>
+
+    <a href="La Odisea - Homero - PDF.pdf" download>
+        ⬇ Descargar
+    </a>
+</div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<div id="visor" class="oculto">
+
+    <button onclick="cerrarLibro()">✖ Cerrar</button>
+
+    <iframe id="pdf"></iframe>
+
+</div>
+
+<main id="contenido" >
+
+<h2 class="titulo">
+Explora nuestras categorías
+</h2>
+
+<section class="cards">
+
+<article class="card">
+
+<img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1200">
+
+<div class="card-content">
+
+<h3>📚 Libros</h3>
+
+<p>
+Miles de títulos disponibles para leer
+cuando quieras.
+</p>
+
+</div>
+
+</article>
+
+<article class="card">
+
+<img src="jujutsukaisen.png">
+
+<div class="card-content">
+
+<h3>🎌 Mangas</h3>
+
+<p>
+Colecciones completas y actualizadas.
+</p>
+
+</div>
+
+</article>
+
+<article class="card">
+
+<img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1200">
+
+<div class="card-content">
+
+<h3>📖 Novelas</h3>
+
+<p>
+Historias emocionantes para todos los gustos.
+</p>
+
+</div>
+
+</article>
+
+</section>
+
+</main>
+
+<footer>
+© 2026 LibraryFlyx - Todos los derechos reservados.
+</footer>
+
+<script>
+function abrir(){modal.style.display='flex'}
+function cerrar(){modal.style.display='none'}
+window.onclick=e=>{if(e.target==modal)cerrar()}
+function login(){
+let u=user.value.trim(),p=pass.value.trim();
+if(u==="admin"&&p==="1234"){
+localStorage.setItem("sesion","si");
+modal.style.display="none";
+inicio.style.display="none";
+contenido.style.display="none";
+panel.style.display="block";
+}else msg.textContent="Usuario o contraseña incorrectos";
+}
+function volver(){
+localStorage.removeItem("sesion");
+panel.style.display="none";
+inicio.style.display="block";
+contenido.style.display="block";
+}
+if(localStorage.getItem("sesion")==="si"){
+inicio.style.display="none";contenido.style.display="none";panel.style.display="block";
+}
+function abrirLibro(libro){
+
+    document.getElementById("visor").classList.remove("oculto");
+
+    document.getElementById("pdf").src = libro;
+
+}
+
+function cerrarLibro(){
+
+    document.getElementById("visor").classList.add("oculto");
+
+    document.getElementById("pdf").src = "";
+
+}
+
+</script>
+</body>
+</html>
